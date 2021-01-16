@@ -29,13 +29,17 @@ function App() {
 
         Firestore.addEmailToHobbyEntry(nonregUser, value);
 
+        nonregUser.name = 'TestName';
+
+        Firestore.addNameToHobbyEmail(nonregUser, value);
+
         nonregUser.location = 'Canada';
 
         Firestore.addLocationToHobbyEmail(nonregUser, value);
 
-        Firestore.getHobbyEmails(value).then(function(querySnapshot) {
-            querySnapshot.forEach(function(doc) {
-                console.log("Got collection item: " + doc.id + " with location: " + doc.data().location);
+        Firestore.getHobbyEmails(value).then(function (querySnapshot) {
+            querySnapshot.forEach(function (doc) {
+                console.log("Got collection item: " + doc.id + " with location: " + doc.data().location + " with name: " + doc.data().name);
             });
         });
     }
@@ -44,6 +48,7 @@ function App() {
     console.log(value2);
 
     const [value1, setValue1] = useState('');
+
     function handleValue(value, assignedValue) {
         setValue1(value);
     }
@@ -53,7 +58,7 @@ function App() {
     return (
         <div className="App">
             <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
+                <img src={logo} className="App-logo" alt="logo"/>
                 <p>
                     Edit <code>src/App.js</code> and save to reload.
                 </p>
@@ -68,7 +73,7 @@ function App() {
                 <Question questionText={'2'} valueChange={handleValue}/>
                 <h1> {value1} </h1>
             </header>
-            <div> Test </div>
+            <div> Test</div>
             <form>
                 <label htmlFor="value">Hobby</label>
                 <label htmlFor="value2">email</label>
