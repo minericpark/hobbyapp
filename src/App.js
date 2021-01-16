@@ -1,7 +1,16 @@
 import logo from './logo.svg';
 import './App.css';
+import Question from './Question';
+import React, {useState} from 'react';
 
 function App() {
+  const [value1, setValue1] = useState('');
+  function handleValue(value, assignedValue) {
+      setValue1(value);
+  }
+
+  console.log(value1);
+
   return (
     <div className="App">
       <header className="App-header">
@@ -17,6 +26,8 @@ function App() {
         >
           test commit
         </a>
+        <Question questionText={'2'} valueChange={handleValue}/>
+        <h1> {value1} </h1>
       </header>
     </div>
   );
