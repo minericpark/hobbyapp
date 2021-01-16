@@ -64,7 +64,8 @@ export const addEmailToHobbyEntry = (nonregUser, hobby) => {
         .collection('emails')
         .doc(nonregUser.email.toLowerCase())
         .set({
-
+            location: null,
+            name: null,
         })
         .then(function() {
             console.log("Email successfully written to emails collection of hobby!");
@@ -88,11 +89,36 @@ export const addLocationToHobbyEmail = (nonregUser, hobby) => {
         .doc(hobby.toLowerCase())
         .collection('emails')
         .doc(nonregUser.email.toLowerCase())
-        .set({
+        .update({
             location: nonregUser.location,
         })
         .then(function() {
             console.log("Location successfully written to email");
+        })
+        .catch(function(error) {
+            console.error("Error writing data: ", error);
+        });
+}
+
+/**
+ * Assumption:
+ * - This email and hobby already exists
+ *      + If this is not the case, then this function will create a new doc with the provided email and name
+ *
+ * @param email
+ * @param location
+ * @returns {Promise<void>}
+ */
+export const addNameToHobbyEmail = (nonregUser, hobby) => {
+    return mainCollectionAccess
+        .doc(hobby.toLowerCase())
+        .collection('emails')
+        .doc(nonregUser.email.toLowerCase())
+        .update({
+            name: nonregUser.name,
+        })
+        .then(function() {
+            console.log("Name successfully written to email");
         })
         .catch(function(error) {
             console.error("Error writing data: ", error);
