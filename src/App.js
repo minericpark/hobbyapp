@@ -22,4 +22,6 @@ function App() {
   );
 }
 
+/** Initial commit - Minericpark */
+
 export default App;
