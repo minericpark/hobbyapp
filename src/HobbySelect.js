@@ -1,13 +1,9 @@
-import React, {useState} from 'react';
 
-function HobbySelect(data) {
+
+export const HobbyAlgo = (data) => {
 
   //sample data
-  let dataset = [
-    [1, 1, 3], [0, 1, 5], [1, 0, 1],
-    [10, 10, 0], [10, 13, 4], [13, 13, 2],
-    [54, 54, 1], [55, 55, 2], [0, 2, 1], [1, 1, 5]
-  ];
+  let dataset = data;
   
   let clustering = require('density-clustering');
   let kmeans = new clustering.KMEANS();
@@ -16,11 +12,10 @@ function HobbySelect(data) {
   let centroid = getCentroid(clusters, dataset);
   console.log(getCentroid(clusters, dataset))
  
-
-  const [hobby, setHobby]=useState(getHobby(centroid))
+  var hobby = getHobby(centroid);
   //console.log(hobby)
   
-  return( <h1>{hobby}</h1>);
+  return(hobby);
 }
 
 function getCentroid(clusters, data) {
@@ -95,8 +90,3 @@ function getHobby(centroid) {
   }
 
 }
-
-
-
-
-export default HobbySelect;

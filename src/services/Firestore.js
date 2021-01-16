@@ -99,7 +99,7 @@ export const addLocationToHobbyEmail = (nonregUser, hobby) => {
         });
 }
 
-//Create email document with empty fields to collection of emails
+//Create email document with empty fields to collection of emails ()
 export const createEmailEntry = (nonregUser) => {
     return mainCollectionAccess
         .doc(nonregUser.email.toLowerCase())
@@ -114,7 +114,7 @@ export const createEmailEntry = (nonregUser) => {
         });
 }
 
-//Get all emails related to provided hobby
+//Get all emails related to provided hobby (returns all of the emails)
 export const getHobbyEmails = (hobby) => {
     return mainCollectionAccess
         .doc(hobby.toLowerCase())

@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react';
 
 function Question(props) {
   const { questionText, valueChange } = props;
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState([]);
 
   function onValueChange(event) {
       setValue(event.target.value);
