@@ -76,11 +76,6 @@ export const getHobbyEmails = (hobby) => {
         .doc(hobby.toLowerCase())
         .collection('emails')
         .get()
-        .then(function(querySnapshot) {
-            querySnapshot.forEach(function(doc) {
-                console.log("Got collection item: " + doc.id);
-            });
-        })
         .catch(function(error) {
             console.error("Error getting collection: ", error);
         });

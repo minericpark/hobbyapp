@@ -18,20 +18,15 @@ function App() {
     }
 
     function onSubmit() {
-        Firestore.createHobbyEntry(value).then(docRef => {
-            console.log(docRef);
-        })
-            .catch(error => setError('create-hobby-error'));
+        Firestore.createHobbyEntry(value);
 
-        Firestore.addEmailToHobbyEntry(value2, value).then(docRef => {
-            console.log(docRef);
-        })
-            .catch(error => setError('add-email-to-hobby-error'));
+        Firestore.addEmailToHobbyEntry(value2, value);
 
-        Firestore.getHobbyEmails(value).then(collection => {
-            console.log(collection);
-        })
-            .catch(error => setError('get-emails-error'));
+        Firestore.getHobbyEmails(value).then(function(querySnapshot) {
+                querySnapshot.forEach(function(doc) {
+                    console.log("Got collection item: " + doc.id);
+                });
+            });
     }
 
     console.log(value);
