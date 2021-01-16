@@ -1,6 +1,5 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
-import "firebase/auth";
 
 const { REACT_APP_FIREBASE_API_KEY,
     REACT_APP_FIREBASE_PROJECT_ID, REACT_APP_FIREBASE_SENDER_ID,
@@ -20,12 +19,32 @@ const cloudConfig = {
     userCollection: 'emails',
 }
 
-firebase.initializeApp(config);
+/**
+ * Class Assumptions
+ * - These functions automatically generate whatever object is provided
+ * - These functions will automatically overwrite any object provided
+ */
+
+/**
+ * Considerations
+ * - Add an email table for verification purposes?
+ * - If provided location input, add location field into the email document of the main collection
+ *      + Add location input to the emails on the email table
+ */
+//Add location: add location field into email document (then parse over them)
+//Maybe add location into email document for emails collection?
+if (!firebase.apps.length) {
+    firebase.initializeApp(config);
+} else {
+    firebase.app();
+}
+
 const db = firebase.firestore();
+const mainCollectionAccess = db.collection(cloudConfig.mainCollection);
 
 //Create hobby document with empty fields to collection of hobbies
 export const createHobbyEntry = (hobby) => {
-    return db.collection(cloudConfig.mainCollection)
+    return mainCollectionAccess
         .doc(hobby.toLowerCase())
         .set({
 
@@ -39,11 +58,11 @@ export const createHobbyEntry = (hobby) => {
 };
 
 //Add entry to collection of email within hobby doc
-export const addEmailToHobbyEntry = (email, hobby) => {
-    return db.collection(cloudConfig.mainCollection)
+export const addEmailToHobbyEntry = (nonregUser, hobby) => {
+    return mainCollectionAccess
         .doc(hobby.toLowerCase())
         .collection('emails')
-        .doc(email.toLowerCase())
+        .doc(nonregUser.email.toLowerCase())
         .set({
 
         })
@@ -55,10 +74,35 @@ export const addEmailToHobbyEntry = (email, hobby) => {
         });
 }
 
+/**
+ * Assumption:
+ * - This email and hobby already exists
+ *      + If this is not the case, then this function will create a new doc with the provided email and location
+ *
+ * @param email
+ * @param location
+ * @returns {Promise<void>}
+ */
+export const addLocationToHobbyEmail = (nonregUser, hobby) => {
+    return mainCollectionAccess
+        .doc(hobby.toLowerCase())
+        .collection('emails')
+        .doc(nonregUser.email.toLowerCase())
+        .set({
+            location: nonregUser.location,
+        })
+        .then(function() {
+            console.log("Location successfully written to email");
+        })
+        .catch(function(error) {
+            console.error("Error writing data: ", error);
+        });
+}
+
 //Create email document with empty fields to collection of emails
-export const createEmailEntry = (email) => {
-    return db.collection(cloudConfig.userCollection)
-        .doc(email.toLowerCase())
+export const createEmailEntry = (nonregUser) => {
+    return mainCollectionAccess
+        .doc(nonregUser.email.toLowerCase())
         .set({
 
         })
@@ -72,7 +116,7 @@ export const createEmailEntry = (email) => {
 
 //Get all emails related to provided hobby
 export const getHobbyEmails = (hobby) => {
-    return db.collection(cloudConfig.mainCollection)
+    return mainCollectionAccess
         .doc(hobby.toLowerCase())
         .collection('emails')
         .get()

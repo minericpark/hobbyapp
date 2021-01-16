@@ -18,13 +18,24 @@ function App() {
     }
 
     function onSubmit() {
+        /**
+         * Create object email here
+         */
+        let nonregUser = {
+            email: value2,
+        }
+
         Firestore.createHobbyEntry(value);
 
-        Firestore.addEmailToHobbyEntry(value2, value);
+        Firestore.addEmailToHobbyEntry(nonregUser, value);
+
+        nonregUser.location = 'Canada';
+
+        Firestore.addLocationToHobbyEmail(nonregUser, value);
 
         Firestore.getHobbyEmails(value).then(function(querySnapshot) {
                 querySnapshot.forEach(function(doc) {
-                    console.log("Got collection item: " + doc.id);
+                    console.log("Got collection item: " + doc.id + " with location: " + doc.data().location);
                 });
             });
     }
