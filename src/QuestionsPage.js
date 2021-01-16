@@ -17,10 +17,8 @@ function QuestionsPage(props) {
     const [value8, setValue8] = useState([]);
     const [value9, setValue9] = useState([]);
     const [value10, setValue10] = useState([]);
-
-    function convertToArray(arr) {
-
-    }
+    const [hobby, setHobby] = useState('');
+    const [displayResult, setResult] = useState(false);
 
     function getHobby() {
         //b="1,2,3,4".split`,`.map(x=>+x)
@@ -30,6 +28,7 @@ function QuestionsPage(props) {
             newAnswerArray.push(answerArray[i].split`,`.map(x=>+x));
         } 
         console.log(HobbySelect.HobbyAlgo(newAnswerArray));
+        setHobby(HobbySelect.HobbyAlgo(newAnswerArray));
     }
     
     function handleValue(value, assignedValue) {
@@ -86,7 +85,6 @@ function QuestionsPage(props) {
         <div className = "questions">
             <h1> {data[0]} </h1>
             <h1> {data[1]} </h1>
-            <form action={getHobby} method = "get">
                 <Question 
                     questionText={'1'} 
                     valueChange={handleValue}
@@ -227,9 +225,8 @@ function QuestionsPage(props) {
                     value3 = {[3,5,2]}
                     value4 = {[4,5,1]}
                 />
-                <input type="submit" value="Submit" disabled = {checkIfNull()}/>
-            </form>
-            <button onClick = {getHobby}></button>
+            <button onClick = {getHobby} disabled = {checkIfNull()}> Get Results </button>
+            <h1> Your potential hobby is: {hobby} </h1>
         </div>
     );
 }
