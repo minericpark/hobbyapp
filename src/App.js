@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import * as Firestore from './services/Firestore';
 import Question from './components/Question';
 import React, {useState} from 'react';
 
@@ -216,7 +217,5 @@ function App() {
     </div>
   );
 }
-
-/** Initial commit - Minericpark */
 
 export default App;
