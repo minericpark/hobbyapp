@@ -1,6 +1,7 @@
 import './App.css';
 import React, { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom';
+import hobbyhub from './hobbyhub.png';
 
 
 function Home() {
@@ -18,8 +19,9 @@ function Home() {
     return (
 
 
-        <div className  >
-            <h1 className="display-1">Home</h1>
+        <div >
+            
+            <img className= "logo" src={hobbyhub} alt="hobbyhub logo"/>
 
             <div className="main_body">
                 <div className="intro" ><h2 className="display-5">

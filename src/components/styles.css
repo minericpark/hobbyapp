@@ -5,7 +5,10 @@ body{
 .main_body{
   
 }
-
+.logo{
+    width:28em;
+    margin-top:6em;
+}
 h1{
     color: #fff1e6;
     
