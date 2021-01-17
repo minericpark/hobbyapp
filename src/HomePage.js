@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useState } from 'react'
-import {Link, NavLink} from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 
 function Home() {
@@ -16,19 +16,41 @@ function Home() {
     }
 
     return (
-       <div className = "homepage">
-          <h1>Home</h1>
-           <label> Name: </label>
-           <input type = "text" onChange={handleName}id = "name" placeholder = "Enter name here"></input>
-           <label> Email Address: </label>
-           <input type = "text" onChange={handleEmail}id = "email" placeholder = "Enter valid email address here"></input>
-           {/*<NavLink to="/questions"> Click to go to questions </NavLink>*/}
-           <Link to={{
-               pathname: "/questions",
-               state: {data: [name, email]}
-           }}> Click to go to next page </Link>
-       </div>
+
+
+        <div className  >
+            <h1 className="display-1">Home</h1>
+
+            <div className="main_body">
+                <div className="intro" ><h2 className="display-5">
+                   
+            </h2> </div>
+                <div>
+                    <label className="home_label" ><p className="lead"> Name:</p> </label>
+                    <input type="text" onChange={handleName} id="name" placeholder="Enter name here"></input>
+
+                </div>
+
+
+                <div>
+                    <label className="home_label"><p className="lead"> Email Address:</p>  </label>
+                    <input type="text" onChange={handleEmail} id="email" placeholder="Enter valid email address here"></input>
+                </div>
+
+
+                
+            </div>
+
+            <div className="next_page">
+                    {/*<NavLink to="/questions"> Click to go to questions </NavLink>*/}
+                    <Link to={{
+                        pathname: "/questions",
+                        state: { data: [name, email] }
+                    }}> <p className="lead"> Find My Hobby!</p></Link>
+
+                </div>
+        </div>
     );
 }
- 
+
 export default Home;

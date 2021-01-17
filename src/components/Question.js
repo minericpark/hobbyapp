@@ -20,19 +20,19 @@ function Question(props) {
        <div>
 
        <input id={props.name+"a"} type="radio" className= "radio-btn" name={props.name}  value={props.value1} onChange={e => onValueChange(e)}/>
-        <label for={props.name+"a"}>{props.option1}</label>
+        <label className="question_label" for={props.name+"a"}>{props.option1}</label>
    
 
         <input id={props.name+"b"} type="radio" name={props.name}  value={props.value2} onChange = {e => onValueChange(e)}/>
-        <label for={props.name+"b"} >{props.option2}</label>
+        <label className="question_label" for={props.name+"b"} >{props.option2}</label>
     
 
         <input id={props.name+"c"} type="radio" name={props.name}  value={props.value3} onChange = {e => onValueChange(e)}/>
-        <label for={props.name+"c"}>{props.option3}</label>
+        <label className="question_label" for={props.name+"c"}>{props.option3}</label>
        
 
         <input id={props.name+"d"} type="radio" name={props.name}  value={props.value4} onChange = {e => onValueChange(e)}/>
-        <label for={props.name+"d"}>{props.option4}</label>
+        <label className="question_label" for={props.name+"d"}>{props.option4}</label>
 
     </div>
 
