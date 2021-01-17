@@ -65,6 +65,7 @@ function getHobby(centroid) {
   for (let i = 0; i < centroid.length; i++) {
     traits[i] = centroid[i] > 3 ? 1 : 0;
   }
+  console.log(`traits are ${traits}`)
   let hobby = ''
   if (isEqual(traits, [1, 1, 0])) {
     return 'Piano'
