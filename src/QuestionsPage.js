@@ -30,6 +30,27 @@ function QuestionsPage(props) {
             newAnswerArray.push(answerArray[i].split`,`.map(x=>+x));
         } 
         console.log(HobbySelect.HobbyAlgo(newAnswerArray));
+
+        let nonregUser = {
+            email: data[1],
+            name: data[0],
+        }
+
+        let hobby = HobbySelect.HobbyAlgo(newAnswerArray);
+
+        Firestore.createHobbyEntry(hobby);
+
+        Firestore.addEmailToHobbyEntry(nonregUser, hobby);
+        Firestore.addNameToHobbyEmail(nonregUser, hobby);
+        nonregUser.location = 'Canada';
+
+        Firestore.addLocationToHobbyEmail(nonregUser, hobby);
+
+        Firestore.getHobbyEmails(hobby).then(function (querySnapshot) {
+            querySnapshot.forEach(function (doc) {
+                console.log("Got collection item: " + doc.id + " with location: " + doc.data().location + " with name: " + doc.data().name);
+            });
+        });
     }
     
     function handleValue(value, assignedValue) {
