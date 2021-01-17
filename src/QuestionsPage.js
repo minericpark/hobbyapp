@@ -3,6 +3,14 @@ import * as Firestore from './services/Firestore';
 import Question from './components/Question';
 import React, {useState} from 'react';
 import * as HobbySelect from './HobbySelect';
+import cooking from './hobbyImages/cooking.jpeg';
+import dancing from './hobbyImages/dancing.jpg';
+import golf from './hobbyImages/golf.jpg';
+import photography from './hobbyImages/photography.jpg';
+import piano from './hobbyImages/piano.jpg';
+import programming from './hobbyImages/programming.jpg';
+import reading from './hobbyImages/reading.jpg';
+import yoga from './hobbyImages/yoga.jpg';
 
 function QuestionsPage(props) {
     const { data } = props.location.state;
@@ -27,7 +35,6 @@ function QuestionsPage(props) {
         for(var i = 0; i < answerArray.length; i++) {
             newAnswerArray.push(answerArray[i].split`,`.map(x=>+x));
         } 
-        console.log(HobbySelect.HobbyAlgo(newAnswerArray));
         setHobby(HobbySelect.HobbyAlgo(newAnswerArray));
     }
     
@@ -79,6 +86,25 @@ function QuestionsPage(props) {
             return true;
         else 
             return false;
+    }
+
+    function determineImage() {
+        if(hobby === "Piano")
+            return piano;
+        else if(hobby === "Cooking")
+            return cooking;
+        else if(hobby === "Programming")
+            return programming;
+        else if(hobby === "Golf")
+            return golf;
+        else if(hobby === "Dancing")
+            return dancing;
+        else if(hobby === "Photography")
+            return photography;
+        else if(hobby === "Reading")
+            return reading;
+        else 
+            return yoga;
     }
 
     return (
@@ -227,6 +253,7 @@ function QuestionsPage(props) {
                 />
             <button onClick = {getHobby} disabled = {checkIfNull()}> Get Results </button>
             <h1> Your potential hobby is: {hobby} </h1>
+            <img className = "hobbyImage" src = {determineImage()} alt = {hobby}></img>
         </div>
     );
 }
