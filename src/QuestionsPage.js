@@ -28,6 +28,7 @@ function QuestionsPage(props) {
     const [value10, setValue10] = useState([]);
     const [hobby, setHobby] = useState('');
     const [displayResult, setResult] = useState(false);
+    const [otherUser, setOtherUser] = useState({});
 
     function getHobby() {
         //b="1,2,3,4".split`,`.map(x=>+x)
@@ -44,7 +45,6 @@ function QuestionsPage(props) {
         }
 
         let hobby = HobbySelect.HobbyAlgo(newAnswerArray);
-
         Firestore.createHobbyEntry(hobby);
 
         Firestore.addEmailToHobbyEntry(nonregUser, hobby);
@@ -52,13 +52,20 @@ function QuestionsPage(props) {
         nonregUser.location = 'Canada';
 
         Firestore.addLocationToHobbyEmail(nonregUser, hobby);
-
+        var otherUser = {
+            email: '',
+            name: ''
+        };
         Firestore.getHobbyEmails(hobby).then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
+                otherUser.email = doc.id;
+                otherUser.name = doc.data().name;
                 console.log("Got collection item: " + doc.id + " with location: " + doc.data().location + " with name: " + doc.data().name);
             });
         });
         setHobby(hobby);
+        setResult(true);
+        setOtherUser(otherUser);
     }
 
     function handleValue(value, assignedValue) {
@@ -103,12 +110,15 @@ function QuestionsPage(props) {
 
     function checkIfNull() {
         var valueLength = 3;
+        if(displayResult)
+            return true;
         if (value1.length < valueLength || value2.length < valueLength || value3.length < valueLength || value4.length < valueLength || value5.length < valueLength)
             return true;
         else if (value6 < valueLength || value7 < valueLength || value8 < valueLength || value9.length < valueLength || value10.length < valueLength)
             return true;
-        else
+        else {
             return false;
+        }
     }
 
     function determineImage() {
@@ -132,9 +142,6 @@ function QuestionsPage(props) {
 
     return (
         <div className="questions">
-            <h1> {data[0]} </h1>
-            <h1> {data[1]} </h1>
-
             <Question
                 questionText={'1'}
                 valueChange={handleValue}
@@ -278,9 +285,14 @@ function QuestionsPage(props) {
            
                 <button className="submit" onClick={getHobby} disabled={checkIfNull()}>  <p className="lead"> Get Results   </p>     </button>
          
-            <h1 className="hobbyH1 display-1"> Your potential hobby is: {hobby} </h1>
-
-  </div>
+            <div className = {displayResult ? "result-display" : "result-hide" }>
+                <h1 className="hobbyH1 display-1"> Your potential hobby is: {hobby} </h1>
+                <img className= "hobbyImage" src = {determineImage()} alt={hobby}></img>
+                <h1 className="hobbyH1 display-1"> Recommended user to contact with: </h1>
+                <h2 className = "display-2"> {otherUser.name} </h2>
+                <h2 className = "display-2"> <a href = {"mailto:" + otherUser.email}> {otherUser.email} </a> </h2>
+            </div>
+    </div>
     );
 }
 

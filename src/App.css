@@ -7,5 +7,24 @@
 }
 
 .hobbyImage {
-  width: 200
+  position: relative;
+  margin: auto;
+  width: 400px;
+  height: 400px;
+  border-radius: 30px;
+}
+
+h1 {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+h2 {
+  padding-top: 10px;
+  color: white;
+  font-size: 30px;
+}
+
+.result-hide {
+  display: none;
 }

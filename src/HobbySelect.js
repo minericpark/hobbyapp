@@ -63,7 +63,7 @@ function isEqual(a1, a2) {
 function getHobby(centroid) {
   let traits = []
   for (let i = 0; i < centroid.length; i++) {
-    traits[i] = centroid[i] > 2.5 ? 1 : 0;
+    traits[i] = centroid[i] > 3 ? 1 : 0;
   }
   let hobby = ''
   if (isEqual(traits, [1, 1, 0])) {
@@ -87,6 +87,10 @@ function getHobby(centroid) {
   }
   else if (isEqual(traits, [0, 0, 0])) {
     return 'Yoga'
+  }
+  
+  else {
+    return 'Photography'
   }
 
 }
