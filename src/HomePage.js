@@ -17,17 +17,25 @@ function Home() {
         setEmail(event.target.value);
     }
 
+    function validEntry() {
+        if (name != '' && email != '') {
+            console.log(`name is ${name} and eemail is ${email}`)
+            return "next_page";
+        }
+        return "no_display";
+    }
+
     return (
 
 
         <div className="container">
-            
-            <img className= "logo" src={hobbyhub} alt="hobbyhub logo"/>
+
+            <img className="logo" src={hobbyhub} alt="hobbyhub logo" />
 
             <div className="main_body">
                 <div className="intro" ><h2 className="display-5">
-                   
-            </h2> </div>
+
+                </h2> </div>
                 <div>
                     <label className="home_label" ><p className="lead"> Name:</p> </label>
                     <input type="text" onChange={handleName} id="name" placeholder="Enter name here"></input>
@@ -41,17 +49,21 @@ function Home() {
                 </div>
 
 
-                
+
             </div>
 
-            <div className="next_page">
-                    {/*<NavLink to="/questions"> Click to go to questions </NavLink>*/}
-                    <Link to={{
-                        pathname: "/questions",
-                        state: { data: [name, email] }
-                    }}> <p className="lead"> Find My Hobby!</p></Link>
+            <div className={validEntry()}>
+                {/*<NavLink to="/questions"> Click to go to questions </NavLink>*/}
 
-                </div>
+
+                <Link to={{
+                    pathname: "/questions",
+                    state: { data: [name, email] }
+                }}> <p className="lead"> Find My Hobby!</p></Link>
+
+
+
+            </div>
         </div>
     );
 }
