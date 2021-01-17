@@ -2,6 +2,11 @@
     animation:transitionIn 0.75s;
 }
 
+.next_page{
+    animation:transitionIn 0.75s;
+
+}
+
 @keyframes transitionIn{
     from{
         opacity:0;
