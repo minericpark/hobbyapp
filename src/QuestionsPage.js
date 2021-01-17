@@ -3,14 +3,6 @@ import * as Firestore from './services/Firestore';
 import Question from './components/Question';
 import React, { useState } from 'react';
 import * as HobbySelect from './HobbySelect';
-import cooking from './hobbyImages/cooking.jpeg';
-import dancing from './hobbyImages/dancing.jpg';
-import golf from './hobbyImages/golf.jpg';
-import photography from './hobbyImages/photography.jpg';
-import piano from './hobbyImages/piano.jpg';
-import programming from './hobbyImages/programming.jpg';
-import reading from './hobbyImages/reading.jpg';
-import yoga from './hobbyImages/yoga.jpg';
 import './components/styles.css';
 import {Link, NavLink} from 'react-router-dom';
 
@@ -153,25 +145,6 @@ function QuestionsPage(props) {
         else {
             return false;
         }
-    }
-
-    function determineImage() {
-        if(hobby === "Piano")
-            return piano;
-        else if(hobby === "Cooking")
-            return cooking;
-        else if(hobby === "Programming")
-            return programming;
-        else if(hobby === "Golf")
-            return golf;
-        else if(hobby === "Dancing")
-            return dancing;
-        else if(hobby === "Photography")
-            return photography;
-        else if(hobby === "Reading")
-            return reading;
-        else 
-            return yoga;
     }
 
     return (
@@ -317,22 +290,13 @@ function QuestionsPage(props) {
                 value4={[4, 5, 1]}
             />
            
-                <button className="submit" onClick={getHobby} disabled={checkIfNull()}>  <p className="lead"> Get Results   </p>     </button>
+                <button className="submit" onClick={getHobby} disabled={checkIfNull()}>  <p className="lead">  Get Results  </p>     </button>
 
             <div className = {displayResult ? "result-display" : "result-hide" }>
                 <Link to={{
                     pathname: "/results",
                     state: {newData: [otherUser, otherUserTwo, otherUserThree, hobby]}
                 }}> Click to go to next page </Link>
-                <h1 className="hobbyH1 display-1"> Your potential hobby is: {hobby} </h1>
-                <img className= "hobbyImage" src = {determineImage()} alt={hobby}></img>
-                <h1 className="hobbyH1 display-1"> Recommended user to contact with: </h1>
-                <h2 className= "hobbyH1 display-1"> {otherUser['name']} </h2>
-                <h2 className = "hobbyH1 display-1"> <a href = {"mailto:" + otherUser['email']}> {otherUser.email} </a> </h2>
-                <h2 className = "hobbyH1 display-1"> {otherUserTwo.name} </h2>
-                <h2 className = "hobbyH1 display-1"> <a href = {"mailto:" + otherUserTwo.email}> {otherUserTwo.email} </a> </h2>
-                <h2 className = "hobbyH1 display-1"> {otherUserThree.name} </h2>
-                <h2 className = "hobbyH1 display-1"> <a href = {"mailto:" + otherUserThree.email}> {otherUserThree.email} </a> </h2>
             </div>
     </div>
     );
