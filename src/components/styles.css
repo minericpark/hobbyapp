@@ -1,0 +1,73 @@
+body{
+    background-color: #1f2029;
+}
+
+h1{
+    color: #fff1e6
+}
+
+label{
+
+    width:10em;
+    position:relative;
+    color:#95d5b2;
+    font-weight: 400;
+    font-size: 1.3em;
+    border:3px solid#1b4332;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding:12px;
+    position:relative;
+    transition:0.2s;
+    margin:auto;
+}
+label:hover{
+    color:white;
+    background-color: #74c69d   ;
+}
+input[type="radio"]{
+    display:none;
+ position:relative;
+ margin-left: 40em;
+ margin-bottom: 1em;
+ bottom: 1em;
+
+}
+
+.container{
+text-align: center;
+}
+
+    
+
+input[type="radio"]:checked+label{
+    background-color: #52b788;
+    color:white;
+}
+
+input[type="radio"]:checked+label:before{
+    background-color: rgb(35, 70, 58);
+    color:white;
+}
+.submit p {
+    font-weight:500;
+    font-size: x-large;
+}
+.submit{
+    color:black;
+
+    width:28em;
+    height:6em;
+     background-color: bisque;
+    padding :28px;
+    border: 3px solid black;
+    border-radius: 20px;
+    margin:50px; 
+}
+
+.hobbyH1{
+    padding:20px;
+    margin:20px;
+}
