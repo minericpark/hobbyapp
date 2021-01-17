@@ -17,10 +17,8 @@ function QuestionsPage(props) {
     const [value8, setValue8] = useState([]);
     const [value9, setValue9] = useState([]);
     const [value10, setValue10] = useState([]);
-
-    function convertToArray(arr) {
-
-    }
+    const [hobby, setHobby] = useState('');
+    const [displayResult, setResult] = useState(false);
 
     function getHobby() {
         //b="1,2,3,4".split`,`.map(x=>+x)
@@ -51,6 +49,7 @@ function QuestionsPage(props) {
                 console.log("Got collection item: " + doc.id + " with location: " + doc.data().location + " with name: " + doc.data().name);
             });
         });
+        setHobby(hobby);
     }
     
     function handleValue(value, assignedValue) {
@@ -107,7 +106,6 @@ function QuestionsPage(props) {
         <div className = "questions">
             <h1> {data[0]} </h1>
             <h1> {data[1]} </h1>
-            <form action={getHobby} method = "get">
                 <Question 
                     questionText={'1'} 
                     valueChange={handleValue}
@@ -195,7 +193,7 @@ function QuestionsPage(props) {
                 <Question 
                     questionText={'7'} 
                     valueChange={handleValue7}
-                    name = "food"
+                    name = "sleep"
                     question = "What is your sleeping schedule like? (Choose the closest schedule)"
                     option1 = "12AM - 9AM"
                     option2 = "3AM - 10AM"
@@ -223,7 +221,7 @@ function QuestionsPage(props) {
                 <Question 
                     questionText={'9'} 
                     valueChange={handleValue9}
-                    name = "food"
+                    name = "music"
                     question = "What is your favourite genre of music (choose the one the applies the most)?"
                     option1 = "Hip-hop"
                     option2 = "R&B"
@@ -237,7 +235,7 @@ function QuestionsPage(props) {
                 <Question 
                     questionText={'10'} 
                     valueChange={handleValue10}
-                    name = "winter"
+                    name = "season"
                     question = "What's your favourite season?"
                     option1 = "Spring"
                     option2 = "Summer"
@@ -248,9 +246,8 @@ function QuestionsPage(props) {
                     value3 = {[3,5,2]}
                     value4 = {[4,5,1]}
                 />
-                <input type="submit" value="Submit" disabled = {checkIfNull()}/>
-            </form>
-            <button onClick = {getHobby}></button>
+            <button onClick = {getHobby} disabled = {checkIfNull()}> Get Results </button>
+            <h1> Your potential hobby is: {hobby} </h1>
         </div>
     );
 }
