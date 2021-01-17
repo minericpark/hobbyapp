@@ -3,6 +3,14 @@ import * as Firestore from './services/Firestore';
 import Question from './components/Question';
 import React, { useState } from 'react';
 import * as HobbySelect from './HobbySelect';
+import cooking from './hobbyImages/cooking.jpeg';
+import dancing from './hobbyImages/dancing.jpg';
+import golf from './hobbyImages/golf.jpg';
+import photography from './hobbyImages/photography.jpg';
+import piano from './hobbyImages/piano.jpg';
+import programming from './hobbyImages/programming.jpg';
+import reading from './hobbyImages/reading.jpg';
+import yoga from './hobbyImages/yoga.jpg';
 import './components/styles.css';
 
 function QuestionsPage(props) {
@@ -20,6 +28,7 @@ function QuestionsPage(props) {
     const [value10, setValue10] = useState([]);
     const [hobby, setHobby] = useState('');
     const [displayResult, setResult] = useState(false);
+    const [otherUser, setOtherUser] = useState({});
 
     function getHobby() {
         //b="1,2,3,4".split`,`.map(x=>+x)
@@ -29,7 +38,34 @@ function QuestionsPage(props) {
             newAnswerArray.push(answerArray[i].split`,`.map(x => +x));
         }
         console.log(HobbySelect.HobbyAlgo(newAnswerArray));
-        setHobby(HobbySelect.HobbyAlgo(newAnswerArray));
+
+        let nonregUser = {
+            email: data[1],
+            name: data[0],
+        }
+
+        let hobby = HobbySelect.HobbyAlgo(newAnswerArray);
+        Firestore.createHobbyEntry(hobby);
+
+        Firestore.addEmailToHobbyEntry(nonregUser, hobby);
+        Firestore.addNameToHobbyEmail(nonregUser, hobby);
+        nonregUser.location = 'Canada';
+
+        Firestore.addLocationToHobbyEmail(nonregUser, hobby);
+        var otherUser = {
+            email: '',
+            name: ''
+        };
+        Firestore.getHobbyEmails(hobby).then(function (querySnapshot) {
+            querySnapshot.forEach(function (doc) {
+                otherUser.email = doc.id;
+                otherUser.name = doc.data().name;
+                console.log("Got collection item: " + doc.id + " with location: " + doc.data().location + " with name: " + doc.data().name);
+            });
+        });
+        setHobby(hobby);
+        setResult(true);
+        setOtherUser(otherUser);
     }
 
     function handleValue(value, assignedValue) {
@@ -74,19 +110,38 @@ function QuestionsPage(props) {
 
     function checkIfNull() {
         var valueLength = 3;
+        if(displayResult)
+            return true;
         if (value1.length < valueLength || value2.length < valueLength || value3.length < valueLength || value4.length < valueLength || value5.length < valueLength)
             return true;
         else if (value6 < valueLength || value7 < valueLength || value8 < valueLength || value9.length < valueLength || value10.length < valueLength)
             return true;
-        else
+        else {
             return false;
+        }
+    }
+
+    function determineImage() {
+        if(hobby === "Piano")
+            return piano;
+        else if(hobby === "Cooking")
+            return cooking;
+        else if(hobby === "Programming")
+            return programming;
+        else if(hobby === "Golf")
+            return golf;
+        else if(hobby === "Dancing")
+            return dancing;
+        else if(hobby === "Photography")
+            return photography;
+        else if(hobby === "Reading")
+            return reading;
+        else 
+            return yoga;
     }
 
     return (
         <div className="questions">
-            <h1> {data[0]} </h1>
-            <h1> {data[1]} </h1>
-
             <Question
                 questionText={'1'}
                 valueChange={handleValue}
@@ -230,9 +285,14 @@ function QuestionsPage(props) {
            
                 <button className="submit" onClick={getHobby} disabled={checkIfNull()}>  <p className="lead"> Get Results   </p>     </button>
          
-            <h1 className="hobbyH1 display-1"> Your potential hobby is: {hobby} </h1>
-
-  </div>
+            <div className = {displayResult ? "result-display" : "result-hide" }>
+                <h1 className="hobbyH1 display-1"> Your potential hobby is: {hobby} </h1>
+                <img className= "hobbyImage" src = {determineImage()} alt={hobby}></img>
+                <h1 className="hobbyH1 display-1"> Recommended user to contact with: </h1>
+                <h2 className = "hobbyH1 display-1"> {otherUser.name} </h2>
+                <h2 className = "hobbyH1 display-1"> <a href = {"mailto:" + otherUser.email}> {otherUser.email} </a> </h2>
+            </div>
+    </div>
     );
 }
 

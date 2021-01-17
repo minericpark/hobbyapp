@@ -89,8 +89,9 @@ function getHobby(centroid) {
   else if (isEqual(traits, [0, 0, 0])) {
     return 'Yoga'
   }
-  else if (isEqual(traits, [0, 0, 1])) {
-    return 'Gaming'
+  
+  else {
+    return 'Photography'
   }
 
 }
