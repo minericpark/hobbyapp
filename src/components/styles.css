@@ -80,21 +80,7 @@ input[type="radio"]:checked+label:before{
     background-color: rgb(35, 70, 58);
     color:white;
 }
-.submit p {
-    font-weight:500;
-    font-size: x-large;
-}
-.submit{
-    color:black;
 
-    width:28em;
-    height:6em;
-    background-color: bisque;
-    padding :28px;
-    border: 3px solid black;
-    border-radius: 20px;
-    margin:50px; 
-}
 
 .hobbyH1{
     padding:20px;
@@ -147,3 +133,61 @@ a{
     font-weight: 400;
 
 }
+
+.submit p {
+    font-weight:500;
+    font-size: x-large;
+}
+.submit{
+    color:black;
+
+    width:28em;
+    height:6em;
+    background-color: bisque;
+    padding :28px;
+    border: 3px solid black;
+    border-radius: 20px;
+    margin:50px; 
+}
+.result-display{
+    margin-left:17.7em;
+    margin-bottom: 2em;
+    margin-top:-2em;
+    width: 18.5em;
+    height: 6em;
+    padding:2em;
+    background-color:#94a5a8;
+    border: 3px solid black;
+    border-radius: 20px;
+    transition:0.5s;
+    font-size: x-large;
+}
+
+.contacts_page{
+color:black;
+transition:0.5s;
+font-weight: 500;
+font-size: xx-large
+
+}
+.contacts_page:hover{
+    color:white;
+    }
+
+.suggestedUser{
+    transition:0.5s;
+}
+.suggestedUser:hover{
+ 
+    background-color:#b38946 ;
+    color:white;
+    
+}
+.display-3{
+    color:rgb(218, 212, 212);
+    transition:0.5s;
+    
+}
+    .display-3:hover{
+        color:white;
+    }

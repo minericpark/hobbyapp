@@ -1,7 +1,7 @@
 import './App.css';
 import './components/styles.css';
 import React, { useState } from 'react'
-import {Link, NavLink} from 'react-router-dom';
+
 import cooking from './hobbyImages/cooking.jpeg';
 import dancing from './hobbyImages/dancing.jpg';
 import golf from './hobbyImages/golf.jpg';
@@ -11,7 +11,10 @@ import programming from './hobbyImages/programming.jpg';
 import reading from './hobbyImages/reading.jpg';
 import yoga from './hobbyImages/yoga.jpg';
 
+
+  
 function Results(props) {
+  
     const { newData } = props.location.state;
     function determineImage() {
         if(newData[3] === "Piano")
@@ -32,17 +35,30 @@ function Results(props) {
             return yoga;
     }
 
+    
+  
     return (
+
+        
        <div className = "homepage">
-          <h1 className="hobbyH1 display-1"> Your potential hobby is: {newData[3]} </h1>
+          <h1 className=" display-2"> Your potential hobby is: {newData[3]} </h1>
           <img className= "hobbyImage" src = {determineImage()} alt={newData[3]}></img>
-          <h1 className="hobbyH1 display-1"> Recommended users to contact with: </h1>
-          <h2 className= "hobbyH1 display-1"> {newData[0].name} </h2>
-          <h2 className = "hobbyH1 display-1"> <a href = {"mailto:" + newData[0].email}> {newData[0].email} </a> </h2>
-          <h2 className = "hobbyH1 display-1"> {newData[1].name } </h2>
-          <h2 className = "hobbyH1 display-1"> <a href = {"mailto:" + newData[1].email}> {newData[1].email} </a> </h2>
-          <h2 className = "hobbyH1 display-1"> {newData[2].name} </h2>
-          <h2 className = "hobbyH1 display-1"> <a href = {"mailto:" + newData[2].email}> {newData[2].email} </a> </h2>
+          <h1 className=" display-3">Users with similar hobby suggestions: </h1>
+
+            <div className="suggestedUser">
+          <h2 className= " display-3"> {newData[0].name} </h2>
+          <h2 className = " display-3"> <a href = {"mailto:" + newData[0].email}> {newData[0].email} </a> </h2>
+          </div>
+
+          <div className="suggestedUser">
+          <h2 className = " display-3"> {newData[1].name } </h2>
+          <h2 className = " display-3"> <a href = {"mailto:" + newData[1].email}> {newData[1].email} </a> </h2>
+          </div>
+
+          <div className="suggestedUser">
+          <h2 className = " display-3"> {newData[2].name} </h2>
+          <h2 className = " display-3"> <a href = {"mailto:" + newData[2].email}> {newData[2].email} </a> </h2>
+          </div>
            
            {/*<NavLink to="/questions"> Click to go to questions </NavLink>*/}
        </div>

@@ -4,7 +4,7 @@ import Question from './components/Question';
 import React, { useState } from 'react';
 import * as HobbySelect from './HobbySelect';
 import './components/styles.css';
-import {Link, NavLink} from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 function QuestionsPage(props) {
     const { data } = props.location.state;
@@ -27,6 +27,8 @@ function QuestionsPage(props) {
 
     function getHobby() {
         //b="1,2,3,4".split`,`.map(x=>+x)
+
+
         let answerArray = [value1, value2, value3, value4, value5, value6, value7, value8, value9, value10];
         let newAnswerArray = [];
         for (var i = 0; i < answerArray.length; i++) {
@@ -52,7 +54,7 @@ function QuestionsPage(props) {
             email: '',
             name: ''
         };
-        
+
         var otherUserTwoNew = {
             email: '',
             name: ''
@@ -64,18 +66,18 @@ function QuestionsPage(props) {
         };
 
         var q = 0;
-        
+
         Firestore.getHobbyEmails(hobbyNew).then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
-                if(q === 0) {
+                if (q === 1) {
                     otherUserNew.email = doc.id;
                     otherUserNew.name = doc.data().name;
                 }
-                else if(q === 1) {
+                else if (q === 2) {
                     otherUserTwoNew.email = doc.id;
                     otherUserTwoNew.name = doc.data().name;
                 }
-                else if(q === 2) {
+                else if (q === 3) {
                     otherUserThreeNew.email = doc.id;
                     otherUserThreeNew.name = doc.data().name;
                 }
@@ -136,7 +138,7 @@ function QuestionsPage(props) {
 
     function checkIfNull() {
         var valueLength = 3;
-        if(displayResult)
+        if (displayResult)
             return true;
         if (value1.length < valueLength || value2.length < valueLength || value3.length < valueLength || value4.length < valueLength || value5.length < valueLength)
             return true;
@@ -289,16 +291,17 @@ function QuestionsPage(props) {
                 value3={[3, 5, 2]}
                 value4={[4, 5, 1]}
             />
-           
+            <div className="container">
                 <button className="submit" onClick={getHobby} disabled={checkIfNull()}>  <p className="lead">  Get Results  </p>     </button>
 
-            <div className = {displayResult ? "result-display" : "result-hide" }>
-                <Link to={{
-                    pathname: "/results",
-                    state: {newData: [otherUser, otherUserTwo, otherUserThree, hobby]}
-                }}> Click to go to next page </Link>
+                <div className={displayResult ? "result-display" : "result-hide"}>
+                    <Link to={{
+                        pathname: "/results",
+                        state: { newData: [otherUser, otherUserTwo, otherUserThree, hobby] }
+                    }}><p className="contacts_page lead"> View Results!</p> </Link>
+                </div>
             </div>
-    </div>
+        </div>
     );
 }
 
