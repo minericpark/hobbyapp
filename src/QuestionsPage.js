@@ -86,6 +86,7 @@ function QuestionsPage(props) {
         <div className="questions">
             <h1> {data[0]} </h1>
             <h1> {data[1]} </h1>
+
             <Question
                 questionText={'1'}
                 valueChange={handleValue}
@@ -230,7 +231,8 @@ function QuestionsPage(props) {
                 <button className="submit" onClick={getHobby} disabled={checkIfNull()}>  <p className="lead"> Get Results   </p>     </button>
          
             <h1 className="hobbyH1 display-1"> Your potential hobby is: {hobby} </h1>
-        </div>
+
+  </div>
     );
 }
 
