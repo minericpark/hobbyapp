@@ -172,7 +172,7 @@ function QuestionsPage(props) {
                 <Question 
                     questionText={'7'} 
                     valueChange={handleValue7}
-                    name = "food"
+                    name = "sleep"
                     question = "What is your sleeping schedule like? (Choose the closest schedule)"
                     option1 = "12AM - 9AM"
                     option2 = "3AM - 10AM"
@@ -200,7 +200,7 @@ function QuestionsPage(props) {
                 <Question 
                     questionText={'9'} 
                     valueChange={handleValue9}
-                    name = "food"
+                    name = "music"
                     question = "What is your favourite genre of music (choose the one the applies the most)?"
                     option1 = "Hip-hop"
                     option2 = "R&B"
@@ -214,7 +214,7 @@ function QuestionsPage(props) {
                 <Question 
                     questionText={'10'} 
                     valueChange={handleValue10}
-                    name = "winter"
+                    name = "season"
                     question = "What's your favourite season?"
                     option1 = "Spring"
                     option2 = "Summer"
