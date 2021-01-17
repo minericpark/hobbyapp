@@ -289,8 +289,8 @@ function QuestionsPage(props) {
                 <h1 className="hobbyH1 display-1"> Your potential hobby is: {hobby} </h1>
                 <img className= "hobbyImage" src = {determineImage()} alt={hobby}></img>
                 <h1 className="hobbyH1 display-1"> Recommended user to contact with: </h1>
-                <h2 className = "display-2"> {otherUser.name} </h2>
-                <h2 className = "display-2"> <a href = {"mailto:" + otherUser.email}> {otherUser.email} </a> </h2>
+                <h2 className = "hobbyH1 display-1"> {otherUser.name} </h2>
+                <h2 className = "hobbyH1 display-1"> <a href = {"mailto:" + otherUser.email}> {otherUser.email} </a> </h2>
             </div>
     </div>
     );
