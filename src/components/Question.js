@@ -1,6 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import './styles.css';
+import './master.css';
 
 function Question(props) {
   const { questionText, valueChange } = props;

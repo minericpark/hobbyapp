@@ -4,6 +4,7 @@ import { Link, NavLink } from 'react-router-dom';
 import hobbyhub from './hobbyhub.png';
 
 
+
 function Home() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -19,7 +20,7 @@ function Home() {
     return (
 
 
-        <div >
+        <div className="container">
             
             <img className= "logo" src={hobbyhub} alt="hobbyhub logo"/>
 
