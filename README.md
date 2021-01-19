@@ -1,10 +1,10 @@
 ## HobbyHub
 [![Netlify Status](https://api.netlify.com/api/v1/badges/d121a4c1-a7a0-4bdd-b063-c641a9877c44/deploy-status)](https://app.netlify.com/sites/hobbyhub/deploys) ![GitHub contributors](https://img.shields.io/github/contributors/minericpark/hobbyapp) ![GitHub last commit](https://img.shields.io/github/last-commit/minericpark/hobbyapp)
 - Hobby-suggesting client-side web application 
-- In development (In the process of submission)
+- Submitted!
 
 ### Intention
-- To be submitted for Hack The North 2021 (Google Cloud entry, Domain.com entry)
+- Submitted for Hack The North 2020 (Google Cloud entry, Domain.com entry)
 
 ### Getting Started/Requirements/Prerequisites/Dependencies
 - Requires a browser for testing / development
